@@ -1,6 +1,5 @@
-import { useState } from "react";
 import "./app.css";
-import Intro from "./pages/Intro"
+import Intro from "./pages/Intro";
 
 function App() {
   return (

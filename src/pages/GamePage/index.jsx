@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopWrapper from "../../components/TopWrapper";
 import CenterWrapper from "../../components/CenterWrapper";
 import RuleCard from "../../components/RuleCard";
@@ -9,6 +9,16 @@ const GamePage = () => {
   const [isCard, setIsCard] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (window.performance && window.performance.getEntriesByType) {
+      const [nav] = window.performance.getEntriesByType("navigation");
+      if (nav?.type === "reload" && window.location.pathname !== "/") {
+        window.location.replace("/");
+      }
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.pageContainer}>
