@@ -1,0 +1,47 @@
+.centerWrapper {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  margin: 48px auto 0px;
+  .imageWrapper {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: center;
+  }
+  .buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .button {
+      &:first-of-type {
+        background: #fff;
+        color: black;
+        border: 1px solid #000;
+        &:hover {
+          background: #000;
+          color: #fff;
+          border: 1px solid transparent;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    position: absolute;
+    right: 3%;
+    margin: 0px;
+    align-items: center;
+
+    .imageWrapper {
+      img {
+        width: 140px;
+        height: 140px;
+      }
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.pageContainer {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  color: #2c2c2c;
+  padding: 40px 80px;
+
+  .blackOverlay {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 25px;
+
+    .blackOverlay {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background-color: rgba(0, 0, 0, 0.731);
+    }
+  }
+}
