@@ -1,12 +1,7 @@
 import styles from "./CenterWrapper.module.scss";
 import Button from "../Button";
 import { useEffect, useState } from "react";
-import Dice1 from "../../../public/Images/dice_1.svg";
-import Dice2 from "../../../public/Images/dice_2.svg";
-import Dice3 from "../../../public/Images/dice_3.svg";
-import Dice4 from "../../../public/Images/dice_4.svg";
-import Dice5 from "../../../public/Images/dice_5.svg";
-import Dice6 from "../../../public/Images/dice_6.svg";
+import { ImagePaths } from "../../utils/imageRelativePaths";
 
 const CenterWrapper = ({
   setScore,
@@ -17,9 +12,10 @@ const CenterWrapper = ({
   setError,
 }) => {
   const [diceNumber, setDiceNumber] = useState(1);
+  const [blockEvent, setBlockEvent] = useState(false);
   const diceRollSound = new Audio("Audio/dice-sound.mp3");
   let timerId = null;
-  const diceSvgs = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
+
   const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
@@ -36,6 +32,7 @@ const CenterWrapper = ({
     if (activeIndex === 0) {
       setError(true);
     } else {
+      setBlockEvent(true);
       let count = 10,
         newDiceNumber;
       diceRollSound.loop = true; // Loop the sound
@@ -48,6 +45,7 @@ const CenterWrapper = ({
           diceRollSound.pause();
           diceRollSound.currentTime = 0;
           clearInterval(timerId);
+          setBlockEvent(false);
           handleUpdateScore(newDiceNumber);
         }
       }, 250);
@@ -63,9 +61,10 @@ const CenterWrapper = ({
   return (
     <div className={styles.centerWrapper}>
       <div className={styles.imageWrapper}>
+        {blockEvent && <div className={styles.blockEvent}></div>}
         <div className={styles.dice} onClick={handleDiceResult}>
           <img
-            src={diceSvgs[diceNumber - 1]}
+            src={ImagePaths[`dice${diceNumber}`]}
             alt="dice"
             height={250}
             width={250}

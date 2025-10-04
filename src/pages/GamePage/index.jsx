@@ -41,10 +41,9 @@ const GamePage = () => {
           setActiveIndex={setActiveIndex}
         />
         {isCard && (
-          <>
-            <div className={styles.blackOverlay}></div>
+          <div className={styles.blackOverlay}>
             <RuleCard setIsCard={setIsCard} />
-          </>
+          </div>
         )}
       </div>
     </>
